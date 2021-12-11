@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
 pragma solidity ^0.8.10;
 
-contract HopOnYop is Ownable {
+contract Staking is Ownable {
   using SafeERC20 for IERC20;
   using EnumerableSet for EnumerableSet.AddressSet;
 
