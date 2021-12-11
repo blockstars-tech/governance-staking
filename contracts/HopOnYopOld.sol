@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
 //////////DEFI product for staking Your YOP tokens and getting rewards
 //Version 1.3
@@ -9,12 +10,14 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 //Fully fair and simple. Enjoy ;)
 pragma solidity ^0.8.10;
 
-contract HopOnYop {
-  IERC20 public YOP;
+contract HopOnYopOld {
+  using SafeERC20 for IERC20;
+
+  IERC20 public yop;
 
   uint256 public RewardPool;
   uint256 public AllTimeStaked;
-  uint256 public TVL;
+  uint256 public tvl;
   uint256 public RewardsOwed;
   uint256 private constant minStake = 88 * (10**8);
   uint256 private constant maxStake = 33333 * (10**8);
@@ -26,7 +29,7 @@ contract HopOnYop {
   uint256 public constant stakedFor3 = 90 days; //33% reward for 90 days lock
 
   constructor(address addr) {
-    YOP = IERC20(addr);
+    yop = IERC20(addr);
   }
 
   enum options {
@@ -34,6 +37,7 @@ contract HopOnYop {
     d60,
     d90
   }
+
   struct stake {
     uint256 amount;
     uint256 stakingTime;
@@ -47,14 +51,14 @@ contract HopOnYop {
    * @dev Adds more tokens to the pool, but first we needs to add allowance for this contract
    */
   function feedRewardPool() public {
-    uint256 tokenAmount = YOP.allowance(msg.sender, address(this));
+    uint256 tokenAmount = yop.allowance(msg.sender, address(this));
     RewardPool += tokenAmount;
-    require(YOP.transferFrom(msg.sender, address(this), tokenAmount)); //Transfers the tokens to smart contract
+    require(yop.transferFrom(msg.sender, address(this), tokenAmount)); //Transfers the tokens to smart contract
   }
 
   function stakeYOP(options option) public {
     require(stakes[msg.sender].stakingTime == 0, "Error: Only one staking per address!!!");
-    uint256 tokenAmount = YOP.allowance(msg.sender, address(this));
+    uint256 tokenAmount = yop.allowance(msg.sender, address(this));
     require(tokenAmount > 0, "Error: Need to increase allowance first");
     require(
       tokenAmount >= minStake && tokenAmount <= maxStake,
@@ -70,10 +74,10 @@ contract HopOnYop {
       "Error: No enough rewards for You, shouldve thought about this before it went moon"
     );
 
-    TVL += tokenAmount;
+    tvl += tokenAmount;
     RewardsOwed += reward;
     AllTimeStaked += tokenAmount;
-    require(YOP.transferFrom(msg.sender, address(this), tokenAmount)); //Transfers the tokens to smart contract
+    require(yop.transferFrom(msg.sender, address(this), tokenAmount)); //Transfers the tokens to smart contract
   }
 
   /**
@@ -97,7 +101,7 @@ contract HopOnYop {
     );
     uint256 reward = calculateReward(msg.sender);
     uint256 amount = stakes[msg.sender].amount;
-    TVL -= amount;
+    tvl -= amount;
     RewardsOwed -= reward;
     RewardPool -= reward;
     stakes[msg.sender].rewardTaken = true;
@@ -141,7 +145,7 @@ contract HopOnYop {
   }
 
   function _withdraw(uint256 amount) internal {
-    require(YOP.transfer(msg.sender, amount));
+    require(yop.transfer(msg.sender, amount));
     emit withdrawHappened(msg.sender, amount);
   }
 
