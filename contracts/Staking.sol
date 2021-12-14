@@ -193,4 +193,8 @@ contract Staking is Ownable {
   function isTokenWhitelisted(address tokenAddress) public view returns (bool) {
     return _whitelistedTokens.contains(tokenAddress);
   }
+
+  function getTokenInfo(address tokenAddress) public view returns (TokenInfo memory) {
+    return _tokenInfos[tokenAddress];
+  }
 }
