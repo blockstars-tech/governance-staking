@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
 pragma solidity ^0.8.10;
 
-contract Staking is Ownable {
+contract GovernanceStaking is Ownable {
   using SafeERC20 for IERC20;
   using EnumerableSet for EnumerableSet.AddressSet;
 
@@ -18,8 +18,8 @@ contract Staking is Ownable {
   uint256 public rewardPool;
   uint256 public rewardsOwed;
 
-  uint256 private constant MIN_STAKE = 88;
-  uint256 private constant MAX_STAKE = 33333;
+  uint256 public constant MIN_STAKE = 88;
+  uint256 public constant MAX_STAKE = 33333;
 
   uint8 public constant REWARD_FOR_30 = 6;
   uint256 public constant STAKED_FOR_30 = 30 days; // 6% reward for 30 days lock
@@ -52,8 +52,6 @@ contract Staking is Ownable {
   EnumerableSet.AddressSet private _whitelistedTokens;
   mapping(address => TokenInfo) private _tokenInfos;
   mapping(address => mapping(address => Stake)) private _stakes;
-
-  // mapping(address => bool) private staked;
 
   constructor(IERC20 rewardToken_) {
     rewardToken = rewardToken_;
@@ -102,7 +100,7 @@ contract Staking is Ownable {
 
     require(
       _whitelistedTokens.contains(tokenAddress),
-      "Token with this address is not whitelisted"
+      "Error: Token with this address is not whitelisted"
     );
     require(
       _stakes[sender][tokenAddress].stakingTime == 0,
@@ -113,11 +111,15 @@ contract Staking is Ownable {
     require(tokenAmount > 0, "Error: Need to increase allowance first");
     require(
       tokenAmount >= MIN_STAKE * 10**tokenDecimals && tokenAmount <= MAX_STAKE * 10**tokenDecimals,
-      "Error: You should stake from 33 to 88888 tokens."
+      "Error: You should stake from 88 to 33333 tokens."
     );
+    // token info
+    TokenInfo storage tokenInfo = _tokenInfos[tokenAddress];
+
     stakerInfo.amount = tokenAmount;
     stakerInfo.option = option;
     stakerInfo.stakingTime = block.timestamp;
+    stakerInfo.coefficient = tokenInfo.coefficient;
 
     uint256 reward = calculateReward(sender, tokenAddress);
     require(
@@ -126,22 +128,10 @@ contract Staking is Ownable {
     );
 
     // token info
-    TokenInfo storage tokenInfo = _tokenInfos[tokenAddress];
     tokenInfo.tvl += tokenAmount;
     tokenInfo.allTimeStaked += tokenAmount;
     rewardsOwed += reward;
-    IERC20(tokenAddress).safeTransferFrom(msg.sender, address(this), tokenAmount);
-  }
-
-  function calculateReward(address staker, address tokenAddress) public view returns (uint256) {
-    uint256 reward;
-    Stake storage stakerInfo = _stakes[staker][tokenAddress];
-
-    if (stakerInfo.option == Option.DAYS_30) reward = REWARD_FOR_30;
-    if (stakerInfo.option == Option.DAYS_60) reward = REWARD_FOR_60;
-    if (stakerInfo.option == Option.DAYS_90) reward = REWARD_FOR_90;
-
-    return ((stakerInfo.amount * reward * stakerInfo.coefficient) / 100);
+    IERC20(tokenAddress).safeTransferFrom(sender, address(this), tokenAmount);
   }
 
   /**
@@ -171,11 +161,21 @@ contract Staking is Ownable {
     emit WithdrawHappened(sender, amount);
   }
 
-  function getStakedFor(Option option) public pure returns (uint256) {
+  function calculateReward(address staker, address tokenAddress) public view returns (uint256) {
+    uint256 reward;
+    Stake memory stakerInfo = _stakes[staker][tokenAddress];
+
+    if (stakerInfo.option == Option.DAYS_30) reward = REWARD_FOR_30;
+    if (stakerInfo.option == Option.DAYS_60) reward = REWARD_FOR_60;
+    if (stakerInfo.option == Option.DAYS_90) reward = REWARD_FOR_90;
+
+    return ((stakerInfo.amount * reward * stakerInfo.coefficient) / 100);
+  }
+
+  function getStakedFor(Option option) public pure returns (uint256 stakedFor) {
     if (option == Option.DAYS_30) return STAKED_FOR_30;
     if (option == Option.DAYS_60) return STAKED_FOR_60;
     if (option == Option.DAYS_90) return STAKED_FOR_90;
-    revert("invalid option");
   }
 
   function getStakerInfo(address stakerAddress, address tokenAddress)
