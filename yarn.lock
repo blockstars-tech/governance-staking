@@ -2017,10 +2017,10 @@
   dependencies:
     cbor "^5.1.0"
 
-"@truffle/codec@^0.11.19":
-  version "0.11.19"
-  resolved "https://registry.yarnpkg.com/@truffle/codec/-/codec-0.11.19.tgz#c3da4b823d1f730a1114f94406fccfa5459b6bdd"
-  integrity sha512-ZxsfRWBE4wcQ01NCpMWH6VRJ/q3mGTl3ku8ln+WJ2P6McIMsS37imO3d8N9NWiQ49klc9kJfT3mKnOVMLTJhIg==
+"@truffle/codec@^0.11.20":
+  version "0.11.20"
+  resolved "https://registry.yarnpkg.com/@truffle/codec/-/codec-0.11.20.tgz#dfd74d16b739837415f42590b7a73ffa79b8af71"
+  integrity sha512-OJtP/AEaYH0QNoq/Z0Pyo4muN0piJDTXQlWPSTb+SI+ypgzd0RT5QOcpmtc6Q24mfeWRB3QbJxQP0ZSeyo1MVA==
   dependencies:
     "@truffle/abi-utils" "^0.2.4"
     "@truffle/compile-common" "^0.7.22"
@@ -2062,10 +2062,10 @@
     "@truffle/error" "^0.0.14"
     colors "^1.4.0"
 
-"@truffle/config@^1.3.13":
-  version "1.3.13"
-  resolved "https://registry.yarnpkg.com/@truffle/config/-/config-1.3.13.tgz#b8618af7639f5db8ab928883fd8a85e4acf4f26e"
-  integrity sha512-AXmY1KzCV+sQDz88CB1wsd8Za99Guo+HHXRjud/kU11HmbuSwiPRqVch5z1uW8JA1yhRVp7jfknMmOCiBrRL3g==
+"@truffle/config@^1.3.14":
+  version "1.3.14"
+  resolved "https://registry.yarnpkg.com/@truffle/config/-/config-1.3.14.tgz#2bfd91d534cf6ccc3acc2f697030b0899ce223d3"
+  integrity sha512-H2GwjiV3qSyDZR8Bc9cWNpE84EF+3i+92RPEV0YWbrdn0QCMXhM+Pw+heEwxofwb8i5gWvMUJFE62EHSsMv6yg==
   dependencies:
     "@truffle/error" "^0.0.14"
     "@truffle/events" "^0.0.18"
@@ -2094,15 +2094,15 @@
     debug "^4.3.1"
     glob "^7.1.6"
 
-"@truffle/contract@^4.3.43":
-  version "4.3.43"
-  resolved "https://registry.yarnpkg.com/@truffle/contract/-/contract-4.3.43.tgz#0d3944d98e9924809283f8fa6adcfb0ffc130590"
-  integrity sha512-F06lBURJ3Mow4fov/9O2rI2giVUhlCskpfESjLSuYnE5ZEDwTiNF99P2iv66EhUqNg6JkUFd9RlDZE5bDnZzJA==
+"@truffle/contract@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@truffle/contract/-/contract-4.4.0.tgz#f49c50292e07cd147001899914dc58f08c351355"
+  integrity sha512-k/YbwIOJsRAn3+VseG/lOlFiqjValHYwXdEyCT5D1HRQ0MQZ7JPabR05+dAlY88BK5o9ejUXCh+TDc0CRDn/eQ==
   dependencies:
     "@ensdomains/ensjs" "^2.0.1"
     "@truffle/blockchain-utils" "^0.0.31"
     "@truffle/contract-schema" "^3.4.3"
-    "@truffle/debug-utils" "^6.0.0"
+    "@truffle/debug-utils" "^6.0.1"
     "@truffle/error" "^0.0.14"
     "@truffle/interface-adapter" "^0.5.8"
     bignumber.js "^7.2.1"
@@ -2114,22 +2114,22 @@
     web3-eth-abi "1.5.3"
     web3-utils "1.5.3"
 
-"@truffle/db-loader@^0.0.20":
-  version "0.0.20"
-  resolved "https://registry.yarnpkg.com/@truffle/db-loader/-/db-loader-0.0.20.tgz#905c40e3bd840f3543eb2e6713ab6b6e1f0766dc"
-  integrity sha512-PHNmi05vObDSoZRXTF3XM24HioYc2HXBd9ZvL/In2RtDBjHa3qDvjN4X4+u8JykNnzNUFbOKcVoxHUZTiSDqlQ==
+"@truffle/db-loader@^0.0.21":
+  version "0.0.21"
+  resolved "https://registry.yarnpkg.com/@truffle/db-loader/-/db-loader-0.0.21.tgz#6762ad5a78fa8fa4c2a7aa09c230cd1449bd50e5"
+  integrity sha512-ExRrWvXQ4Qn+cAXF2quzNJSEPUTGSZWo/M1M0w2hchK+9ewU81VH+NukOE7PXmSzJDcVTzIdtEvujvbcHeV1ug==
   optionalDependencies:
-    "@truffle/db" "^0.5.41"
+    "@truffle/db" "^0.5.42"
 
-"@truffle/db@^0.5.41":
-  version "0.5.41"
-  resolved "https://registry.yarnpkg.com/@truffle/db/-/db-0.5.41.tgz#7b004f204a329c1bb961431a57d8580ae06ee063"
-  integrity sha512-yy2KD2+xxxBGRPhtmDhIDitRKPimvD54xM3myBDU6BhDL+MKMxFIgMQJ9VBhUXoM1ZjSiwewt17BNQQ/gorlVw==
+"@truffle/db@^0.5.42":
+  version "0.5.42"
+  resolved "https://registry.yarnpkg.com/@truffle/db/-/db-0.5.42.tgz#e37812d125436d20d9acd5e091d453c8b9dc3f82"
+  integrity sha512-2H/IgSCaJzk/XTNXYJ08D4VTWMDUMaIiRrhxylPAPtq3a/nrDM2fQ+6eATCP3xLV139HF7T5GbU/+LMUJ2u3VA==
   dependencies:
     "@truffle/abi-utils" "^0.2.4"
     "@truffle/code-utils" "^1.2.30"
-    "@truffle/config" "^1.3.13"
-    "@truffle/resolver" "^7.0.39"
+    "@truffle/config" "^1.3.14"
+    "@truffle/resolver" "^7.0.40"
     apollo-server "^2.18.2"
     debug "^4.3.1"
     fs-extra "^9.1.0"
@@ -2159,29 +2159,29 @@
     highlight.js "^9.15.8"
     highlightjs-solidity "^1.0.18"
 
-"@truffle/debug-utils@^6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@truffle/debug-utils/-/debug-utils-6.0.0.tgz#9bac9509afe2005b9cb071252a22cc4297928568"
-  integrity sha512-MoN8aQQX2DLLEMMlfF+8ZFtjh0FJsPYwuI4NDcn7upoORe/QoRHeypIhQgaepOXBKwIXW0mplBkAk/nm+cQp8A==
+"@truffle/debug-utils@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@truffle/debug-utils/-/debug-utils-6.0.1.tgz#8935a316f3a59bcee37bab0e4c43eea7d1283fc3"
+  integrity sha512-ntuLPYwKNOIeWfeb2emO9Tu2v1aH6mCLGBrKRrDX4ofMUbPyN3ujxiCg/FCxbkL9cpkbH9zOHLmu2ubNlZ3gvA==
   dependencies:
-    "@truffle/codec" "^0.11.19"
+    "@truffle/codec" "^0.11.20"
     "@trufflesuite/chromafi" "^2.2.2"
     bn.js "^5.1.3"
     chalk "^2.4.2"
     debug "^4.3.1"
     highlightjs-solidity "^2.0.2"
 
-"@truffle/debugger@^9.2.5":
-  version "9.2.5"
-  resolved "https://registry.yarnpkg.com/@truffle/debugger/-/debugger-9.2.5.tgz#e7ca21279f71dae571f2e52df5b1ea659936ef40"
-  integrity sha512-LKRBMvc6aUq9uGJmUOqvSWEKvonlz5jEDdSpVgBul+FAoBSvzWvxfSH3yZRAoz+r1aJlMnHkBw8G8LplykwsQQ==
+"@truffle/debugger@^9.2.6":
+  version "9.2.6"
+  resolved "https://registry.yarnpkg.com/@truffle/debugger/-/debugger-9.2.6.tgz#38216ad2f42a0dca909581862d832ca603fbac92"
+  integrity sha512-3RS0cR6dd6zFlNRXnykuKfa7ougHdfl3EGmkLyGDTYm1b6I6FfinZyfxRH7fV6Tqs91ubQTdOBJcXvwKwp/Z1Q==
   dependencies:
     "@truffle/abi-utils" "^0.2.4"
-    "@truffle/codec" "^0.11.19"
-    "@truffle/source-map-utils" "^1.3.63"
+    "@truffle/codec" "^0.11.20"
+    "@truffle/source-map-utils" "^1.3.64"
     bn.js "^5.1.3"
     debug "^4.3.1"
-    json-pointer "^0.6.0"
+    json-pointer "^0.6.1"
     json-stable-stringify "^1.0.1"
     lodash.flatten "^4.4.0"
     lodash.merge "^4.6.2"
@@ -2190,7 +2190,7 @@
     redux "^3.7.2"
     redux-saga "1.0.0"
     remote-redux-devtools "^0.5.12"
-    reselect-tree "^1.3.4"
+    reselect-tree "^1.3.5"
     semver "^7.3.4"
     web3 "1.5.3"
     web3-eth-abi "1.5.3"
@@ -2291,37 +2291,37 @@
     "@truffle/interface-adapter" "^0.5.8"
     web3 "1.5.3"
 
-"@truffle/provisioner@^0.2.36":
-  version "0.2.36"
-  resolved "https://registry.yarnpkg.com/@truffle/provisioner/-/provisioner-0.2.36.tgz#dc1016d74afae018928064986d22a28a16a5b143"
-  integrity sha512-dCDshpm0dDcsD7mDM8j+ghYY+gIWsTUY6VnLUju3QeBHUVz0ax+6I6MqOEsx7uVxEjJBtCOKBQHfk6b4N3XEkw==
+"@truffle/provisioner@^0.2.37":
+  version "0.2.37"
+  resolved "https://registry.yarnpkg.com/@truffle/provisioner/-/provisioner-0.2.37.tgz#b3f0517f42d6144a806dcccf69f81ee5bce11a5e"
+  integrity sha512-iV6Bo1QhN5ojAVOa7g0glQ66UVJxLl0n1S6DgBs1ZtJKNTng8FeMQ3wBJxC++XqES6wGUQ1hqjUDdUjqvig+EQ==
   dependencies:
-    "@truffle/config" "^1.3.13"
+    "@truffle/config" "^1.3.14"
 
-"@truffle/resolver@^7.0.39":
-  version "7.0.39"
-  resolved "https://registry.yarnpkg.com/@truffle/resolver/-/resolver-7.0.39.tgz#0ad28fd161b8939a84924d94f857bb95447d148a"
-  integrity sha512-J57gqiuYWrgXTNVbuRaTmjtfbgJcBZzVZhvjIuwERkEYvBFb277v2G8WSpx7stSN/LLCSiUzeBNlaG8T3DpOVA==
+"@truffle/resolver@^7.0.40":
+  version "7.0.40"
+  resolved "https://registry.yarnpkg.com/@truffle/resolver/-/resolver-7.0.40.tgz#e4427341ab0c48b813ef0545613fc6237fb1f4cb"
+  integrity sha512-9nj7T8ErgmT++TScHGdeSicSJUNEHsZHLm6P2EvtYViB18zIAk9gSDsvsqBiKZNRBG8zEhAszqYj6FqkneZckA==
   dependencies:
-    "@truffle/contract" "^4.3.43"
+    "@truffle/contract" "^4.4.0"
     "@truffle/contract-sources" "^0.1.12"
     "@truffle/expect" "^0.0.18"
-    "@truffle/provisioner" "^0.2.36"
+    "@truffle/provisioner" "^0.2.37"
     abi-to-sol "^0.5.1"
     debug "^4.3.1"
     detect-installed "^2.0.4"
     get-installed-path "^4.0.8"
     glob "^7.1.6"
 
-"@truffle/source-map-utils@^1.3.63":
-  version "1.3.63"
-  resolved "https://registry.yarnpkg.com/@truffle/source-map-utils/-/source-map-utils-1.3.63.tgz#6fa26d6b7a0874e99d6d78a5cacc13903dbcffd4"
-  integrity sha512-JmRnhONsjAdB5sTDl2xy7DUoIxg2KUGpXsPcu1EggBcojY1fZoD3wsdWWLysRDW5Od+npn/BWSdjzGdQknyVPA==
+"@truffle/source-map-utils@^1.3.64":
+  version "1.3.64"
+  resolved "https://registry.yarnpkg.com/@truffle/source-map-utils/-/source-map-utils-1.3.64.tgz#a165d689ea656304b58e92eaf546fa7581503dea"
+  integrity sha512-f78ry5YAw4vE0Q6RQVQh5Ulrb77uvHMPRMF/sMPNo/KM4Unh21/BwNS3CPR05Y+kCpjLsqJhEUPYR1z6xsfnnw==
   dependencies:
     "@truffle/code-utils" "^1.2.30"
-    "@truffle/codec" "^0.11.19"
+    "@truffle/codec" "^0.11.20"
     debug "^4.3.1"
-    json-pointer "^0.6.0"
+    json-pointer "^0.6.1"
     node-interval-tree "^1.3.3"
     web3-utils "1.5.3"
 
@@ -2707,13 +2707,13 @@
   dependencies:
     "@types/node" "*"
 
-"@typescript-eslint/eslint-plugin@^5.6.0":
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.6.0.tgz#efd8668b3d6627c46ce722c2afe813928fe120a0"
-  integrity sha512-MIbeMy5qfLqtgs1hWd088k1hOuRsN9JrHUPwVVKCD99EOUqScd7SrwoZl4Gso05EAP9w1kvLWUVGJOVpRPkDPA==
+"@typescript-eslint/eslint-plugin@^5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.7.0.tgz#12d54709f8ea1da99a01d8a992cd0474ad0f0aa9"
+  integrity sha512-8RTGBpNn5a9M628wBPrCbJ+v3YTEOE2qeZb7TDkGKTDXSj36KGRg92SpFFaR/0S3rSXQxM0Og/kV9EyadsYSBg==
   dependencies:
-    "@typescript-eslint/experimental-utils" "5.6.0"
-    "@typescript-eslint/scope-manager" "5.6.0"
+    "@typescript-eslint/experimental-utils" "5.7.0"
+    "@typescript-eslint/scope-manager" "5.7.0"
     debug "^4.3.2"
     functional-red-black-tree "^1.0.1"
     ignore "^5.1.8"
@@ -2721,60 +2721,60 @@
     semver "^7.3.5"
     tsutils "^3.21.0"
 
-"@typescript-eslint/experimental-utils@5.6.0":
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-5.6.0.tgz#f3a5960f2004abdcac7bb81412bafc1560841c23"
-  integrity sha512-VDoRf3Qj7+W3sS/ZBXZh3LBzp0snDLEgvp6qj0vOAIiAPM07bd5ojQ3CTzF/QFl5AKh7Bh1ycgj6lFBJHUt/DA==
+"@typescript-eslint/experimental-utils@5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-5.7.0.tgz#2b1633e6613c3238036156f70c32634843ad034f"
+  integrity sha512-u57eZ5FbEpzN5kSjmVrSesovWslH2ZyNPnaXQMXWgH57d5+EVHEt76W75vVuI9qKZ5BMDKNfRN+pxcPEjQjb2A==
   dependencies:
     "@types/json-schema" "^7.0.9"
-    "@typescript-eslint/scope-manager" "5.6.0"
-    "@typescript-eslint/types" "5.6.0"
-    "@typescript-eslint/typescript-estree" "5.6.0"
+    "@typescript-eslint/scope-manager" "5.7.0"
+    "@typescript-eslint/types" "5.7.0"
+    "@typescript-eslint/typescript-estree" "5.7.0"
     eslint-scope "^5.1.1"
     eslint-utils "^3.0.0"
 
-"@typescript-eslint/parser@^5.6.0":
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.6.0.tgz#11677324659641400d653253c03dcfbed468d199"
-  integrity sha512-YVK49NgdUPQ8SpCZaOpiq1kLkYRPMv9U5gcMrywzI8brtwZjr/tG3sZpuHyODt76W/A0SufNjYt9ZOgrC4tLIQ==
+"@typescript-eslint/parser@^5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.7.0.tgz#4dca6de463d86f02d252e681136a67888ea3b181"
+  integrity sha512-m/gWCCcS4jXw6vkrPQ1BjZ1vomP01PArgzvauBqzsoZ3urLbsRChexB8/YV8z9HwE3qlJM35FxfKZ1nfP/4x8g==
   dependencies:
-    "@typescript-eslint/scope-manager" "5.6.0"
-    "@typescript-eslint/types" "5.6.0"
-    "@typescript-eslint/typescript-estree" "5.6.0"
+    "@typescript-eslint/scope-manager" "5.7.0"
+    "@typescript-eslint/types" "5.7.0"
+    "@typescript-eslint/typescript-estree" "5.7.0"
     debug "^4.3.2"
 
-"@typescript-eslint/scope-manager@5.6.0":
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-5.6.0.tgz#9dd7f007dc8f3a34cdff6f79f5eaab27ae05157e"
-  integrity sha512-1U1G77Hw2jsGWVsO2w6eVCbOg0HZ5WxL/cozVSTfqnL/eB9muhb8THsP0G3w+BB5xAHv9KptwdfYFAUfzcIh4A==
+"@typescript-eslint/scope-manager@5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-5.7.0.tgz#70adf960e5a58994ad50438ba60d98ecadd79452"
+  integrity sha512-7mxR520DGq5F7sSSgM0HSSMJ+TFUymOeFRMfUfGFAVBv8BR+Jv1vHgAouYUvWRZeszVBJlLcc9fDdktxb5kmxA==
   dependencies:
-    "@typescript-eslint/types" "5.6.0"
-    "@typescript-eslint/visitor-keys" "5.6.0"
+    "@typescript-eslint/types" "5.7.0"
+    "@typescript-eslint/visitor-keys" "5.7.0"
 
-"@typescript-eslint/types@5.6.0":
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.6.0.tgz#745cb1b59daadcc1f32f7be95f0f68accf38afdd"
-  integrity sha512-OIZffked7mXv4mXzWU5MgAEbCf9ecNJBKi+Si6/I9PpTaj+cf2x58h2oHW5/P/yTnPkKaayfjhLvx+crnl5ubA==
+"@typescript-eslint/types@5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.7.0.tgz#2d4cae0105ba7d08bffa69698197a762483ebcbe"
+  integrity sha512-5AeYIF5p2kAneIpnLFve8g50VyAjq7udM7ApZZ9JYjdPjkz0LvODfuSHIDUVnIuUoxafoWzpFyU7Sqbxgi79mA==
 
-"@typescript-eslint/typescript-estree@5.6.0":
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-5.6.0.tgz#dfbb19c9307fdd81bd9c650c67e8397821d7faf0"
-  integrity sha512-92vK5tQaE81rK7fOmuWMrSQtK1IMonESR+RJR2Tlc7w4o0MeEdjgidY/uO2Gobh7z4Q1hhS94Cr7r021fMVEeA==
+"@typescript-eslint/typescript-estree@5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-5.7.0.tgz#968fad899050ccce4f08a40cd5fabc0798525006"
+  integrity sha512-aO1Ql+izMrTnPj5aFFlEJkpD4jRqC4Gwhygu2oHK2wfVQpmOPbyDSveJ+r/NQo+PWV43M6uEAeLVbTi09dFLhg==
   dependencies:
-    "@typescript-eslint/types" "5.6.0"
-    "@typescript-eslint/visitor-keys" "5.6.0"
+    "@typescript-eslint/types" "5.7.0"
+    "@typescript-eslint/visitor-keys" "5.7.0"
     debug "^4.3.2"
     globby "^11.0.4"
     is-glob "^4.0.3"
     semver "^7.3.5"
     tsutils "^3.21.0"
 
-"@typescript-eslint/visitor-keys@5.6.0":
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-5.6.0.tgz#3e36509e103fe9713d8f035ac977235fd63cb6e6"
-  integrity sha512-1p7hDp5cpRFUyE3+lvA74egs+RWSgumrBpzBCDzfTFv0aQ7lIeay80yU0hIxgAhwQ6PcasW35kaOCyDOv6O/Ng==
+"@typescript-eslint/visitor-keys@5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-5.7.0.tgz#e05164239eb7cb8aa9fa06c516ede480ce260178"
+  integrity sha512-hdohahZ4lTFcglZSJ3DGdzxQHBSxsLVqHzkiOmKi7xVAWC4y2c1bIMKmPJSrA4aOEoRUPOKQ87Y/taC7yVHpFg==
   dependencies:
-    "@typescript-eslint/types" "5.6.0"
+    "@typescript-eslint/types" "5.7.0"
     eslint-visitor-keys "^3.0.0"
 
 "@wry/context@^0.6.0":
@@ -9175,7 +9175,7 @@ json-parse-better-errors@^1.0.1:
   resolved "https://registry.yarnpkg.com/json-parse-better-errors/-/json-parse-better-errors-1.0.2.tgz#bb867cfb3450e69107c131d1c514bab3dc8bcaa9"
   integrity sha512-mrqyZKfX5EhL7hvqcV6WG1yYjnjeuYDzDhhcAAUrq8Po85NBQBJP+ZDUT75qZQ98IkUoBqdkExkukOU7Ts2wrw==
 
-json-pointer@^0.6.0, json-pointer@^0.6.1:
+json-pointer@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/json-pointer/-/json-pointer-0.6.1.tgz#3c6caa6ac139e2599f5a1659d39852154015054d"
   integrity sha512-3OvjqKdCBvH41DLpV4iSt6v2XhZXV1bPB4OROuknvUXI7ZQNofieCPkmE26stEJ9zdQuvIxDHCuYhfgxFAAs+Q==
@@ -12558,7 +12558,7 @@ require-main-filename@^2.0.0:
   resolved "https://registry.yarnpkg.com/require-main-filename/-/require-main-filename-2.0.0.tgz#d0b329ecc7cc0f61649f62215be69af54aa8989b"
   integrity sha512-NKN5kMDylKuldxYLSUfrbo5Tuzh4hd+2E8NPPX02mZtn1VuREQToYe/ZdlJy+J3uCpfaiGF05e7B8W0iXbQHmg==
 
-reselect-tree@^1.3.4:
+reselect-tree@^1.3.5:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/reselect-tree/-/reselect-tree-1.3.5.tgz#9ff58ad76f2e64584947f1d1b3285e037a448c23"
   integrity sha512-h/iXrz7wGBidwMmNFu5L1z0sDvqU6SAdJ2TKr5IIsyGKeyXQchi0gXbfbIJJfGWD8VGcDYjzGAbhy1KaGD4FWQ==
@@ -14030,18 +14030,18 @@ trim-right@^1.0.1:
   resolved "https://registry.yarnpkg.com/true-case-path/-/true-case-path-2.2.1.tgz#c5bf04a5bbec3fd118be4084461b3a27c4d796bf"
   integrity sha512-0z3j8R7MCjy10kc/g+qg7Ln3alJTodw9aDuVWZa3uiWqfuBMKeAeP2ocWcxoyM3D73yz3Jt/Pu4qPr4wHSdB/Q==
 
-truffle@^5.4.23:
-  version "5.4.23"
-  resolved "https://registry.yarnpkg.com/truffle/-/truffle-5.4.23.tgz#7be1fbb39cc49c14add0b71882ec15cd9e5762a0"
-  integrity sha512-mw/tHvZLY/2uNMO4qkLvou6SK5ngg/EkKlZ2Kb6VmLG1w9VJ1D24iqZpLyiURSjxBNF7WOFnV8ooPBXTXzGa5w==
+truffle@^5.4.24:
+  version "5.4.24"
+  resolved "https://registry.yarnpkg.com/truffle/-/truffle-5.4.24.tgz#59d1408cd023a81bf263c799313044d6c7a92099"
+  integrity sha512-9eTzJzECzWzh2QL1ng0KWesQ1spLSKIh5KFbjBIcLNrvwcZGZy1Ns5fsgt1/qb+4gqgusxn0zmPOnaYRdwBVJQ==
   dependencies:
-    "@truffle/db-loader" "^0.0.20"
-    "@truffle/debugger" "^9.2.5"
+    "@truffle/db-loader" "^0.0.21"
+    "@truffle/debugger" "^9.2.6"
     app-module-path "^2.2.0"
     mocha "8.1.2"
     original-require "^1.0.1"
   optionalDependencies:
-    "@truffle/db" "^0.5.41"
+    "@truffle/db" "^0.5.42"
     "@truffle/preserve-fs" "^0.2.4"
     "@truffle/preserve-to-buckets" "^0.2.4"
     "@truffle/preserve-to-filecoin" "^0.2.4"
@@ -14267,10 +14267,10 @@ typescript-tuple@^2.2.1:
   dependencies:
     typescript-compare "^0.0.2"
 
-typescript@^4.5.3:
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.3.tgz#afaa858e68c7103317d89eb90c5d8906268d353c"
-  integrity sha512-eVYaEHALSt+s9LbvgEv4Ef+Tdq7hBiIZgii12xXJnukryt3pMgJf6aKhoCZ3FWQsu6sydEnkg11fYXLzhLBjeQ==
+typescript@^4.5.4:
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.4.tgz#a17d3a0263bf5c8723b9c52f43c5084edf13c2e8"
+  integrity sha512-VgYs2A2QIRuGphtzFV7aQJduJ2gyfTljngLzjpfW9FoYZF6xuw1W0vW9ghCKLfcWrCFxK81CSGRAvS1pn4fIUg==
 
 typical@^2.6.0, typical@^2.6.1:
   version "2.6.1"
