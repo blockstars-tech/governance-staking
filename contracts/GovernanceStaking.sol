@@ -12,14 +12,11 @@ contract GovernanceStaking is Ownable {
   using SafeERC20 for IERC20;
   using EnumerableSet for EnumerableSet.AddressSet;
 
-  event WithdrawHappened(address indexed to, uint256 amount);
+  event WithdrawHappened(address indexed to, uint256 amount, uint256 reward);
 
   IERC20 public rewardToken;
   uint256 public rewardPool;
   uint256 public rewardsOwed;
-
-  uint256 public constant MIN_STAKE = 88;
-  uint256 public constant MAX_STAKE = 33333;
 
   uint8 public constant REWARD_FOR_30 = 6;
   uint256 public constant STAKED_FOR_30 = 30 days; // 6% reward for 30 days lock
@@ -106,13 +103,8 @@ contract GovernanceStaking is Ownable {
       _stakes[sender][tokenAddress].stakingTime == 0,
       "Error: Only one staking per token per address!!!"
     );
-    uint8 tokenDecimals = _tokenInfos[tokenAddress].decimals;
     uint256 tokenAmount = IERC20(tokenAddress).allowance(sender, address(this));
     require(tokenAmount > 0, "Error: Need to increase allowance first");
-    require(
-      tokenAmount >= MIN_STAKE * 10**tokenDecimals && tokenAmount <= MAX_STAKE * 10**tokenDecimals,
-      "Error: You should stake from 88 to 33333 tokens."
-    );
     // token info
     TokenInfo storage tokenInfo = _tokenInfos[tokenAddress];
 
@@ -147,6 +139,7 @@ contract GovernanceStaking is Ownable {
     require(stakerInfo.rewardTaken == false, "Error: You already took the reward");
 
     uint256 stakedFor = getStakedFor(stakerInfo.option);
+    require(stakerInfo.stakingTime != 0, "Error: You are not staked yet for this token");
     require(stakerInfo.stakingTime + stakedFor <= block.timestamp, "Error: Too soon to unstake");
 
     uint256 reward = calculateReward(sender, tokenAddress);
@@ -158,7 +151,7 @@ contract GovernanceStaking is Ownable {
 
     IERC20(tokenAddress).safeTransfer(sender, amount);
     rewardToken.transfer(sender, reward);
-    emit WithdrawHappened(sender, amount);
+    emit WithdrawHappened(sender, amount, reward);
   }
 
   function calculateReward(address staker, address tokenAddress) public view returns (uint256) {
@@ -166,8 +159,8 @@ contract GovernanceStaking is Ownable {
     Stake memory stakerInfo = _stakes[staker][tokenAddress];
 
     if (stakerInfo.option == Option.DAYS_30) reward = REWARD_FOR_30;
-    if (stakerInfo.option == Option.DAYS_60) reward = REWARD_FOR_60;
-    if (stakerInfo.option == Option.DAYS_90) reward = REWARD_FOR_90;
+    else if (stakerInfo.option == Option.DAYS_60) reward = REWARD_FOR_60;
+    else if (stakerInfo.option == Option.DAYS_90) reward = REWARD_FOR_90;
 
     return ((stakerInfo.amount * reward * stakerInfo.coefficient) / 100);
   }
