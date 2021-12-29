@@ -111,28 +111,40 @@ contract("Staking", (accounts) => {
 
   describe("#whitelisting", () => {
     describe("#whitelistToken", () => {
-      const coefficient = new BN("5");
+      const numerator = new BN("5");
+      const denominator = new BN("1");
 
       it("should revert if caller is not owner of contract", async () => {
         await expect(
-          staking.whitelistToken(stakingToken1.address, coefficient, { from: user1 })
+          staking.whitelistToken(stakingToken1.address, numerator, denominator, { from: user1 })
         ).to.eventually.be.rejectedWith(Error, "Ownable: caller is not the owner");
+      });
+
+      it("should revert if denominator is 0", async () => {
+        await expect(
+          staking.whitelistToken(stakingToken1.address, numerator, 0, { from: deployer })
+        ).to.eventually.be.rejectedWith(Error, "Denominator cannot be 0");
       });
 
       it("should whitelist token Address", async () => {
         const tokenState = await staking.isTokenWhitelisted(stakingToken1.address);
         expect(tokenState).false;
 
-        await staking.whitelistToken(stakingToken1.address, coefficient, { from: deployer });
+        await staking.whitelistToken(stakingToken1.address, numerator, denominator, {
+          from: deployer,
+        });
 
-        const expectedCoefficient = coefficient;
+        const expectedNumerator = numerator;
+        const expectedDenominator = denominator;
         const expectedDecimals = await stakingToken1.decimals();
 
         const tokenInfo = await staking.getTokenInfo(stakingToken1.address);
-        const actualCoefficient = new BN(tokenInfo.coefficient);
+        const actualNumerator = new BN(tokenInfo.coefficient.numerator);
+        const actualDenominator = new BN(tokenInfo.coefficient.denominator);
         const actualDecimals = new BN(tokenInfo.decimals);
 
-        expect(actualCoefficient.eq(expectedCoefficient)).true;
+        expect(actualNumerator.eq(expectedNumerator)).true;
+        expect(actualDenominator.eq(expectedDenominator)).true;
         expect(actualDecimals.eq(expectedDecimals)).true;
       });
 
@@ -140,13 +152,15 @@ contract("Staking", (accounts) => {
         let tokenState = await staking.isTokenWhitelisted(stakingToken1.address);
         expect(tokenState).false;
 
-        await staking.whitelistToken(stakingToken1.address, coefficient, { from: deployer });
+        await staking.whitelistToken(stakingToken1.address, numerator, denominator, {
+          from: deployer,
+        });
 
         tokenState = await staking.isTokenWhitelisted(stakingToken1.address);
         expect(tokenState).true;
 
         await expect(
-          staking.whitelistToken(stakingToken1.address, coefficient, { from: deployer })
+          staking.whitelistToken(stakingToken1.address, numerator, denominator, { from: deployer })
         ).to.eventually.be.rejectedWith(Error, "Token with this address already exist");
       });
     });
@@ -168,8 +182,11 @@ contract("Staking", (accounts) => {
       });
 
       it("should remove whitelisted token", async () => {
-        const coefficient = new BN("5");
-        await staking.whitelistToken(stakingToken1.address, coefficient, { from: deployer });
+        const numerator = new BN("5");
+        const denominator = new BN("1");
+        await staking.whitelistToken(stakingToken1.address, numerator, denominator, {
+          from: deployer,
+        });
 
         let tokenState = await staking.isTokenWhitelisted(stakingToken1.address);
         expect(tokenState).true;
@@ -183,38 +200,61 @@ contract("Staking", (accounts) => {
 
     describe("#changeCoefficient", () => {
       it("should revert if caller is not owner of contract", async () => {
-        const coefficient = new BN("5");
+        const numerator = new BN("5");
+        const denominator = new BN("1");
         await expect(
-          staking.changeCoefficient(stakingToken1.address, coefficient, { from: user1 })
+          staking.changeCoefficient(stakingToken1.address, numerator, denominator, { from: user1 })
         ).to.eventually.be.rejectedWith(Error, "Ownable: caller is not the owner");
+      });
+
+      it("should revert if denominator is 0", async () => {
+        const numerator = new BN("5");
+        const denominator = new BN("0");
+        await expect(
+          staking.changeCoefficient(stakingToken1.address, numerator, denominator, {
+            from: deployer,
+          })
+        ).to.eventually.be.rejectedWith(Error, "Denominator cannot be 0");
       });
 
       it("should revert if token is not whitelisted", async () => {
         const tokenState = await staking.isTokenWhitelisted(stakingToken1.address);
         expect(tokenState).false;
 
-        const newCoefficient = new BN("7");
+        const newNumerator = new BN("7");
+        const newDenominator = new BN("1");
 
         await expect(
-          staking.changeCoefficient(stakingToken1.address, newCoefficient, { from: deployer })
+          staking.changeCoefficient(stakingToken1.address, newNumerator, newDenominator, {
+            from: deployer,
+          })
         ).to.eventually.be.rejectedWith(Error, "Token with this address is not whitelisted");
       });
 
       it("should change token coefficient", async () => {
-        const coefficient = new BN("5");
-        await staking.whitelistToken(stakingToken1.address, coefficient, { from: deployer });
+        const numerator = new BN("5");
+        const denominator = new BN("1");
+        await staking.whitelistToken(stakingToken1.address, numerator, denominator, {
+          from: deployer,
+        });
 
-        const newCoefficient = new BN("7");
+        const newNumerator = new BN("7");
+        const newDenominator = new BN("1");
 
-        await staking.changeCoefficient(stakingToken1.address, newCoefficient, { from: deployer });
+        await staking.changeCoefficient(stakingToken1.address, newNumerator, newDenominator, {
+          from: deployer,
+        });
 
-        const expectedCoefficient = newCoefficient;
+        const expectedNumerator = newNumerator;
+        const expectedDenominator = newDenominator;
 
         const tokenInfo = await staking.getTokenInfo(stakingToken1.address);
 
-        const actualCoefficient = new BN(tokenInfo.coefficient);
+        const actualNumerator = new BN(tokenInfo.coefficient.numerator);
+        const actualDenominator = new BN(tokenInfo.coefficient.denominator);
 
-        expect(actualCoefficient.eq(expectedCoefficient)).true;
+        expect(actualNumerator.eq(expectedNumerator)).true;
+        expect(actualDenominator.eq(expectedDenominator)).true;
       });
     });
 
@@ -244,12 +284,15 @@ contract("Staking", (accounts) => {
     });
 
     describe("#stake", () => {
-      const coefficient = new BN("5");
+      const numerator = new BN("5");
+      const denominator = new BN("1");
 
       let tenPowDecimals: BN;
 
       beforeEach("whitelist token address", async () => {
-        await staking.whitelistToken(stakingToken1.address, coefficient, { from: deployer });
+        await staking.whitelistToken(stakingToken1.address, numerator, denominator, {
+          from: deployer,
+        });
       });
 
       beforeEach("get min and max stake by token decimals", async () => {
@@ -296,7 +339,7 @@ contract("Staking", (accounts) => {
         const tokenInfoBefore = await staking.getTokenInfo(stakingToken1.address);
 
         const option = Option.DAYS_90;
-        const reward = calculateReward(stakingTokenAmount, coefficient, option);
+        const reward = calculateReward(stakingTokenAmount, numerator, denominator, option);
         await staking.stake(option, stakingToken1.address, { from: user1 });
 
         const contractToken1BalanceAfter = await stakingToken1.balanceOf(staking.address);
@@ -315,7 +358,8 @@ contract("Staking", (accounts) => {
         expect(new BN(stakerInfoAfter.amount).eq(stakingTokenAmount)).true;
         expect(new BN(stakerInfoAfter.option).eqn(option)).true;
         expect(new BN(stakerInfoAfter.stakingTime).isZero()).false;
-        expect(new BN(stakerInfoAfter.coefficient).eq(coefficient)).true;
+        expect(new BN(stakerInfoAfter.coefficient.numerator).eq(numerator)).true;
+        expect(new BN(stakerInfoAfter.coefficient.denominator).eq(denominator)).true;
 
         // token info
         expect(new BN(tokenInfoAfter.tvl).sub(new BN(tokenInfoBefore.tvl)).eq(stakingTokenAmount));
@@ -371,11 +415,14 @@ contract("Staking", (accounts) => {
 
     describe("#claimRewards", () => {
       let tenPowDecimals: BN;
-      const coefficient = new BN("5");
+      const numerator = new BN("5");
+      const denominator = new BN("1");
       const option = Option.DAYS_90;
 
       beforeEach("whitelist token address", async () => {
-        await staking.whitelistToken(stakingToken1.address, coefficient, { from: deployer });
+        await staking.whitelistToken(stakingToken1.address, numerator, denominator, {
+          from: deployer,
+        });
       });
 
       beforeEach("get token decimals", async () => {
@@ -421,7 +468,8 @@ contract("Staking", (accounts) => {
 
         const reward = calculateReward(
           new BN(stakerInfoBefore.amount),
-          new BN(stakerInfoBefore.coefficient),
+          new BN(stakerInfoBefore.coefficient.numerator),
+          new BN(stakerInfoBefore.coefficient.denominator),
           getOptionByNumber(new BN(stakerInfoBefore.option).toNumber())
         );
         const result = await staking.claimRewards(stakingToken1.address, { from: user1 });
@@ -464,14 +512,14 @@ contract("Staking", (accounts) => {
     });
   });
 
-  const calculateReward = (amount: BN, coefficient: BN, option: Option) => {
+  const calculateReward = (amount: BN, numerator: BN, denominator: BN, option: Option) => {
     let reward = new BN(0);
 
     if (option === Option.DAYS_30) reward = new BN(Constants.REWARD_FOR_30);
     if (option === Option.DAYS_60) reward = new BN(Constants.REWARD_FOR_60);
     if (option === Option.DAYS_90) reward = new BN(Constants.REWARD_FOR_90);
 
-    return amount.mul(reward).mul(coefficient).divn(100);
+    return amount.mul(reward).mul(numerator).div(denominator);
   };
 
   const getStakedFor = (option: Option) => {

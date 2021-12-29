@@ -64,6 +64,7 @@ contract GovernanceStaking is Ownable {
     uint32 numerator,
     uint32 denominator
   ) public onlyOwner {
+    require(denominator != 0, "Denominator cannot be 0");
     require(!_whitelistedTokens.contains(tokenAddress), "Token with this address already exist");
     _whitelistedTokens.add(tokenAddress);
     _tokenInfos[tokenAddress].coefficient = Coefficient({
@@ -86,6 +87,7 @@ contract GovernanceStaking is Ownable {
     uint32 numerator,
     uint32 denominator
   ) public onlyOwner {
+    require(denominator != 0, "Denominator cannot be 0");
     require(
       _whitelistedTokens.contains(tokenAddress),
       "Token with this address is not whitelisted"
