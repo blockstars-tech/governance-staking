@@ -31,19 +31,24 @@ contract GovernanceStaking is Ownable {
     DAYS_90
   }
 
+  struct Coefficient {
+    uint32 numerator;
+    uint32 denominator;
+  }
+
   struct Stake {
     uint256 amount;
     uint256 stakingTime;
     bool rewardTaken;
     Option option;
-    uint16 coefficient;
+    Coefficient coefficient;
   }
 
   struct TokenInfo {
     uint8 decimals;
     uint256 tvl;
     uint256 allTimeStaked;
-    uint16 coefficient;
+    Coefficient coefficient;
   }
 
   EnumerableSet.AddressSet private _whitelistedTokens;
@@ -54,10 +59,17 @@ contract GovernanceStaking is Ownable {
     rewardToken = rewardToken_;
   }
 
-  function whitelistToken(address tokenAddress, uint16 coefficient) public onlyOwner {
+  function whitelistToken(
+    address tokenAddress,
+    uint32 numerator,
+    uint32 denominator
+  ) public onlyOwner {
     require(!_whitelistedTokens.contains(tokenAddress), "Token with this address already exist");
     _whitelistedTokens.add(tokenAddress);
-    _tokenInfos[tokenAddress].coefficient = coefficient;
+    _tokenInfos[tokenAddress].coefficient = Coefficient({
+      numerator: numerator,
+      denominator: denominator
+    });
     _tokenInfos[tokenAddress].decimals = IERC20Metadata(tokenAddress).decimals();
   }
 
@@ -69,12 +81,19 @@ contract GovernanceStaking is Ownable {
     _whitelistedTokens.remove(tokenAddress);
   }
 
-  function changeCoefficient(address tokenAddress, uint16 coefficient) public onlyOwner {
+  function changeCoefficient(
+    address tokenAddress,
+    uint32 numerator,
+    uint32 denominator
+  ) public onlyOwner {
     require(
       _whitelistedTokens.contains(tokenAddress),
       "Token with this address is not whitelisted"
     );
-    _tokenInfos[tokenAddress].coefficient = coefficient;
+    _tokenInfos[tokenAddress].coefficient = Coefficient({
+      numerator: numerator,
+      denominator: denominator
+    });
   }
 
   /**
@@ -162,7 +181,9 @@ contract GovernanceStaking is Ownable {
     else if (stakerInfo.option == Option.DAYS_60) reward = REWARD_FOR_60;
     else if (stakerInfo.option == Option.DAYS_90) reward = REWARD_FOR_90;
 
-    return ((stakerInfo.amount * reward * stakerInfo.coefficient) / 100);
+    return
+      (stakerInfo.amount * reward * stakerInfo.coefficient.numerator) /
+      stakerInfo.coefficient.denominator;
   }
 
   function getStakedFor(Option option) public pure returns (uint256 stakedFor) {
